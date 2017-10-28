@@ -1,0 +1,11 @@
+{
+  "name": "calliope-life",
+  "version": "1.0.0",
+  "description": "Game of Life for Calliope mini",
+  "license": "GPL",
+  "dependencies": {
+    "microbit": "calliope-mini/microbit#v2.0.0-rc8-calliope-1.0.3"
+  },
+  "targetDependencies": {},
+  "bin": "./source"
+}
