@@ -9,33 +9,35 @@ int lebendig(int x, int y);
 int nachbarnLebendig(int x, int y);
 int neuLebendig(int x, int y);
 void schritt();
+void initFeld();
 
-int helligkeit;
-int wartez;
+int helligkeit = 9;
+int wartez = 100;
 array<int, 25> tempListe;
 int main() 
 {
     uBit.init();
     
-    helligkeit = 9;
-    wartez = 100;
-    tempListe = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     uBit.display.setDisplayMode(DISPLAY_MODE_GREYSCALE);
+    initFeld();
+    while ( true ) {
+        if ( uBit.buttonA.isPressed() ) {
+            schritt();
+        }
+        else if ( uBit.buttonB.isPressed() ) {
+            initFeld();
+        }
+        uBit.sleep(200);;
+    }
+    release_fiber();
+}
+
+void initFeld() {
     for (int y = 0; y < 5; y += 1) {
         for (int x = 0; x < 5; x += 1) {
             uBit.display.image.setPixelValue(x, y, uBit.random(2) * 255.0);
         }
     }
-    while ( true ) {
-        while ( true ) {
-            if ( uBit.buttonA.isPressed() ) {
-                break;
-            }
-        }
-        schritt();
-        uBit.sleep(200);
-    }
-    release_fiber();
 }
 
 int lebendig(int x, int y) {
